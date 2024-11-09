@@ -2,6 +2,7 @@ package umc.spring.domain.review;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.global.BaseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @Data
+@Builder
 @NoArgsConstructor
 @Table(name = "review")
 public class Review extends BaseEntity {
@@ -38,7 +40,7 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ReviewImage> reviewImageList = new ArrayList<>();
 
 

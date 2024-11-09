@@ -29,7 +29,7 @@ public class Store {
     @Embedded
     private Address address;
     @Column(nullable = false)
-    private Integer star;
+    private Float score;
 
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime openingTime;
@@ -37,18 +37,28 @@ public class Store {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime closingTime;
 
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category storeCategory;
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Mission> missionList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Review> reviewList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<StoreImage> storeImages = new ArrayList<>();
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + storeId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", score=" + score +
+                '}';
+    }
 
 
 }

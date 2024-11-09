@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import umc.spring.domain.global.BaseEntity;
 import umc.spring.domain.global.Category;
 import umc.spring.domain.mapping.MemberMission;
+import umc.spring.domain.mapping.MissionStatus;
+import umc.spring.domain.region.Region;
 import umc.spring.domain.store.Store;
 
 import java.time.LocalDate;
@@ -32,15 +34,21 @@ public class Mission extends BaseEntity {
     private LocalDate deadline;
     @Column(nullable = false, length = 100)
     private String missionSpec;
+    @Enumerated(EnumType.STRING)
+    private MissionStatus status = MissionStatus.CHALLENGING; // 기본값
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category storeCategory;
 
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
+
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MemberMission> memberMissionList = new ArrayList<>();
 }

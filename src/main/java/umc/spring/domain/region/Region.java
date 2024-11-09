@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.global.Category;
+import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.member.Address;
 import umc.spring.domain.member.Member;
 import umc.spring.domain.mission.Mission;
@@ -26,8 +27,8 @@ public class Region {
     @Column(nullable = false)
     private Integer count;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Mission> missionList = new ArrayList<>();
 
 }

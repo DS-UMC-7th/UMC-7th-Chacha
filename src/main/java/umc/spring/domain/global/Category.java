@@ -19,10 +19,10 @@ public class Category {
     @Column(nullable = false, length = 100)
     String name;
 
-    @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MemberPrefer> memberPreferList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "storeCategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "storeCategory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Store> storeList = new ArrayList<>();
 
 

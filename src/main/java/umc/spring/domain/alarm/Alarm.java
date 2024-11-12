@@ -1,5 +1,6 @@
 package umc.spring.domain.alarm;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class Alarm {
 
     @Enumerated(value = EnumType.STRING)
     private AlarmType alarmType;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "alarm", cascade = CascadeType.ALL)
     private List<MemberAlarm> memberAlarmList = new ArrayList<>();
 }

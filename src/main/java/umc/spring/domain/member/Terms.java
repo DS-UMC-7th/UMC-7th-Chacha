@@ -1,4 +1,5 @@
 package umc.spring.domain.member;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.*;
@@ -24,7 +25,7 @@ public class Terms extends BaseEntity {
     private String body;
     @Column(nullable = false)
     private Boolean optional;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MemberAgree> memberAgreeList = new ArrayList<>();
 }

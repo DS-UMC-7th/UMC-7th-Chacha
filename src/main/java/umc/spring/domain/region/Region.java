@@ -1,5 +1,6 @@
 package umc.spring.domain.region;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class Region {
     @Column(nullable = false)
     private Integer count;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Mission> missionList = new ArrayList<>();
 

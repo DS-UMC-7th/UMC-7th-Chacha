@@ -1,9 +1,11 @@
 package umc.spring.domain.mission;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import umc.spring.domain.global.BaseEntity;
 import umc.spring.domain.global.Category;
 import umc.spring.domain.mapping.MemberMission;
@@ -19,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@ToString(exclude = {"store", "memberMissionList"})
 @Table(name = "mission")
 public class Mission extends BaseEntity {
     @Id
@@ -48,7 +51,7 @@ public class Mission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id")
     private Region region;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MemberMission> memberMissionList = new ArrayList<>();
 }

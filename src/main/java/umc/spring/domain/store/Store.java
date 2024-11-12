@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import umc.spring.domain.global.Category;
 import umc.spring.domain.image.StoreImage;
@@ -16,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@ToString(exclude = {"missions", "category"})
 @Table(name = "store")
 public class Store {
     @Id
@@ -38,7 +38,7 @@ public class Store {
     private LocalTime closingTime;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category storeCategory;
 
@@ -50,14 +50,10 @@ public class Store {
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<StoreImage> storeImages = new ArrayList<>();
+
     @Override
     public String toString() {
-        return "Store{" +
-                "id=" + storeId +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", score=" + score +
-                '}';
+        return "Store{id=" + storeId + ", name='" + name + "'}";
     }
 
 

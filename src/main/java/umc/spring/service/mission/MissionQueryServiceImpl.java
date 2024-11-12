@@ -24,12 +24,21 @@ public class MissionQueryServiceImpl {
         filterMissions.forEach(mission -> System.out.println("Mission: " + mission));
         return filterMissions;
 
-    }public List<Mission> findMissionsByRegionAndStatus(Region region, MissionStatus missionStatus) {
+    }
+//    public List<Mission> findMissionsByRegionAndStatus(Region region, MissionStatus missionStatus) {
+//        List<Mission> filterMissions = missionRepository.dynamicQueryWithBooleanBuilder(region, missionStatus);
+//        filterMissions.forEach(mission -> System.out.println("Region: " + region + ", Mission: " + mission));
+//        return filterMissions;
+//
+//    }
+    @Transactional
+    public List<Mission> findMissionsByRegionAndStatus(Region region, MissionStatus missionStatus) {
+        // 이 메서드에서 트랜잭션을 유지하여 연관된 missionList 컬렉션을 로딩
         List<Mission> filterMissions = missionRepository.dynamicQueryWithBooleanBuilder(region, missionStatus);
         filterMissions.forEach(mission -> System.out.println("Region: " + region + ", Mission: " + mission));
         return filterMissions;
-
     }
+
 
 }
 

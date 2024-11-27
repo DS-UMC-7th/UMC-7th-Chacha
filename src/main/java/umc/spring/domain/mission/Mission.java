@@ -2,10 +2,7 @@ package umc.spring.domain.mission;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import umc.spring.domain.global.BaseEntity;
 import umc.spring.domain.global.Category;
 import umc.spring.domain.mapping.MemberMission;
@@ -20,7 +17,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter@Getter
 @ToString(exclude = {"store", "memberMissionList"})
 @Table(name = "mission")
 public class Mission extends BaseEntity {

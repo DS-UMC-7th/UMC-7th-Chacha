@@ -1,9 +1,7 @@
 package umc.spring.domain.member;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import umc.spring.domain.global.BaseEntity;
 import umc.spring.domain.image.ProfileImage;
 import umc.spring.domain.mapping.MemberAlarm;
@@ -17,7 +15,8 @@ import java.util.ArrayList;
 
 @Entity
 @AllArgsConstructor
-@Data
+@Builder
+@Getter
 @NoArgsConstructor
 @Table(name = "member")
 public class Member extends BaseEntity {
@@ -27,21 +26,21 @@ public class Member extends BaseEntity {
     private Long memberId;
     @Column(nullable = false, length = 100)
     private String name;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String birthDay;
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
-    @Embedded
-    private Address address;
-    @Column(nullable = false)
+//    @Embedded
+    private String address;
+    @Column(nullable = true)
     private Integer level;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Integer point;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String email;
     @Column(unique = true, length = 100)
     String nickname;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     String phoneNumber;
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ProfileImage profileImage;

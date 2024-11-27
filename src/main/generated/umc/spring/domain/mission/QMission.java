@@ -62,7 +62,7 @@ public class QMission extends EntityPathBase<Mission> {
 
     public QMission(Class<? extends Mission> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.region = inits.isInitialized("region") ? new umc.spring.domain.region.QRegion(forProperty("region"), inits.get("region")) : null;
+        this.region = inits.isInitialized("region") ? new umc.spring.domain.region.QRegion(forProperty("region")) : null;
         this.store = inits.isInitialized("store") ? new umc.spring.domain.store.QStore(forProperty("store"), inits.get("store")) : null;
         this.storeCategory = inits.isInitialized("storeCategory") ? new umc.spring.domain.global.QCategory(forProperty("storeCategory")) : null;
     }

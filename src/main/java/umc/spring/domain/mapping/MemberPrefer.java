@@ -9,6 +9,7 @@ import umc.spring.domain.member.Member;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor()
 @AllArgsConstructor@Table(name = "member_prefer")

@@ -12,7 +12,7 @@ import umc.spring.domain.region.Region;
 import umc.spring.domain.review.Review;
 import umc.spring.repository.RegionRepository;
 import umc.spring.service.RegionQueryService;
-import umc.spring.service.mission.MissionQueryServiceImpl;
+//import umc.spring.service.mission.MissionQueryServiceImpl;
 import umc.spring.service.store.StoreQueryService;
 
 @SpringBootApplication

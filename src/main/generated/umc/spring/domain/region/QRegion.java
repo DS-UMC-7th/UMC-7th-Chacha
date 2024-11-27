@@ -18,11 +18,9 @@ public class QRegion extends EntityPathBase<Region> {
 
     private static final long serialVersionUID = 523247170L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QRegion region = new QRegion("region");
 
-    public final umc.spring.domain.member.QAddress address;
+    public final StringPath city = createString("city");
 
     public final NumberPath<Integer> count = createNumber("count", Integer.class);
 
@@ -30,25 +28,20 @@ public class QRegion extends EntityPathBase<Region> {
 
     public final NumberPath<Long> region_id = createNumber("region_id", Long.class);
 
+    public final ListPath<umc.spring.domain.store.Store, umc.spring.domain.store.QStore> storeList = this.<umc.spring.domain.store.Store, umc.spring.domain.store.QStore>createList("storeList", umc.spring.domain.store.Store.class, umc.spring.domain.store.QStore.class, PathInits.DIRECT2);
+
+    public final StringPath street = createString("street");
+
     public QRegion(String variable) {
-        this(Region.class, forVariable(variable), INITS);
+        super(Region.class, forVariable(variable));
     }
 
     public QRegion(Path<? extends Region> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        super(path.getType(), path.getMetadata());
     }
 
     public QRegion(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
-    }
-
-    public QRegion(PathMetadata metadata, PathInits inits) {
-        this(Region.class, metadata, inits);
-    }
-
-    public QRegion(Class<? extends Region> type, PathMetadata metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.address = inits.isInitialized("address") ? new umc.spring.domain.member.QAddress(forProperty("address")) : null;
+        super(Region.class, metadata);
     }
 
 }

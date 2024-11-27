@@ -40,8 +40,14 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
     public List<Mission> dynamicQueryWithBooleanBuilder(Region region, MissionStatus missionStatus) {
         BooleanBuilder predicate = new BooleanBuilder();
 
-        if(missionStatus == MissionStatus.CHALLENGING) {
+        // region이 null이 아니면 필터링 조건에 추가
+        if (region != null) {
             predicate.and(mission.region.eq(region));
+        }
+
+        // missionStatus가 null이 아니면 필터링 조건에 추가
+        if (missionStatus != null) {
+            predicate.and(mission.status.eq(missionStatus));
         }
 
         return jpaQueryFactory

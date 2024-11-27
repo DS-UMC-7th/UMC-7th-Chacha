@@ -22,7 +22,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
-    public final QAddress address;
+    public final StringPath address = createString("address");
 
     public final StringPath birthDay = createString("birthDay");
 
@@ -72,7 +72,6 @@ public class QMember extends EntityPathBase<Member> {
 
     public QMember(Class<? extends Member> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.address = inits.isInitialized("address") ? new QAddress(forProperty("address")) : null;
         this.profileImage = inits.isInitialized("profileImage") ? new umc.spring.domain.image.QProfileImage(forProperty("profileImage"), inits.get("profileImage")) : null;
     }
 

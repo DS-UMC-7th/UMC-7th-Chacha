@@ -1,15 +1,13 @@
 package umc.spring.domain.store;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import umc.spring.domain.global.Category;
 import umc.spring.domain.image.StoreImage;
 import umc.spring.domain.member.Address;
 import umc.spring.domain.mission.Mission;
+import umc.spring.domain.region.Region;
 import umc.spring.domain.review.Review;
 
 import java.time.LocalTime;
@@ -18,6 +16,10 @@ import java.util.List;
 
 @Entity
 @Data
+@Getter@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString(exclude = {"missions", "category"})
 @Table(name = "store")
 public class Store {
@@ -26,9 +28,9 @@ public class Store {
     private Long storeId;
     @Column(nullable = false, length = 100)
     private String name;
-    @Embedded
-    private Address address;
-    @Column(nullable = false)
+//    @Embedded
+    private String address;
+    @Column(nullable = true)
     private Float score;
 
     @DateTimeFormat(pattern = "HH:mm")
@@ -41,6 +43,10 @@ public class Store {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category storeCategory;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Mission> missionList = new ArrayList<>();

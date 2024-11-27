@@ -22,7 +22,7 @@ public class QStore extends EntityPathBase<Store> {
 
     public static final QStore store = new QStore("store");
 
-    public final umc.spring.domain.member.QAddress address;
+    public final StringPath address = createString("address");
 
     public final TimePath<java.time.LocalTime> closingTime = createTime("closingTime", java.time.LocalTime.class);
 
@@ -31,6 +31,8 @@ public class QStore extends EntityPathBase<Store> {
     public final StringPath name = createString("name");
 
     public final TimePath<java.time.LocalTime> openingTime = createTime("openingTime", java.time.LocalTime.class);
+
+    public final umc.spring.domain.region.QRegion region;
 
     public final ListPath<umc.spring.domain.review.Review, umc.spring.domain.review.QReview> reviewList = this.<umc.spring.domain.review.Review, umc.spring.domain.review.QReview>createList("reviewList", umc.spring.domain.review.Review.class, umc.spring.domain.review.QReview.class, PathInits.DIRECT2);
 
@@ -60,7 +62,7 @@ public class QStore extends EntityPathBase<Store> {
 
     public QStore(Class<? extends Store> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.address = inits.isInitialized("address") ? new umc.spring.domain.member.QAddress(forProperty("address")) : null;
+        this.region = inits.isInitialized("region") ? new umc.spring.domain.region.QRegion(forProperty("region")) : null;
         this.storeCategory = inits.isInitialized("storeCategory") ? new umc.spring.domain.global.QCategory(forProperty("storeCategory")) : null;
     }
 

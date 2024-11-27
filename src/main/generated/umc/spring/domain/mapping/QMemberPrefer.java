@@ -22,11 +22,19 @@ public class QMemberPrefer extends EntityPathBase<MemberPrefer> {
 
     public static final QMemberPrefer memberPrefer = new QMemberPrefer("memberPrefer");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
+
     public final umc.spring.domain.global.QCategory foodCategory;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final umc.spring.domain.member.QMember member;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMemberPrefer(String variable) {
         this(MemberPrefer.class, forVariable(variable), INITS);

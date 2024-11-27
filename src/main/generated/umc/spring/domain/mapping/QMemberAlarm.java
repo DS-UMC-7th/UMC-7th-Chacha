@@ -22,11 +22,19 @@ public class QMemberAlarm extends EntityPathBase<MemberAlarm> {
 
     public static final QMemberAlarm memberAlarm = new QMemberAlarm("memberAlarm");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
     public final umc.spring.domain.alarm.QAlarm alarm;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final umc.spring.domain.member.QMember member;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMemberAlarm(String variable) {
         this(MemberAlarm.class, forVariable(variable), INITS);

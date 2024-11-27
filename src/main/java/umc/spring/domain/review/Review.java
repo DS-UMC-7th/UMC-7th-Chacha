@@ -1,10 +1,7 @@
 package umc.spring.domain.review;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import umc.spring.domain.global.BaseEntity;
 import umc.spring.domain.global.Category;
 import umc.spring.domain.image.ReviewImage;
@@ -17,7 +14,7 @@ import java.util.List;
 
 @Entity
 @AllArgsConstructor
-@Data
+@Getter@Setter
 @Builder
 @NoArgsConstructor
 @Table(name = "review")

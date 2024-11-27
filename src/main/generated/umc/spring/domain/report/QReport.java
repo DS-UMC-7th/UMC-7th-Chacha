@@ -22,7 +22,12 @@ public class QReport extends EntityPathBase<Report> {
 
     public static final QReport report = new QReport("report");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
     public final StringPath answer = createString("answer");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -33,6 +38,9 @@ public class QReport extends EntityPathBase<Report> {
     public final EnumPath<ReportStatus> status = createEnum("status", ReportStatus.class);
 
     public final StringPath title = createString("title");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QReport(String variable) {
         this(Report.class, forVariable(variable), INITS);

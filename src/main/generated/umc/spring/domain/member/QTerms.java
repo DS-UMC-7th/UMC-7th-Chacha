@@ -20,7 +20,12 @@ public class QTerms extends EntityPathBase<Terms> {
 
     public static final QTerms terms = new QTerms("terms");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
     public final StringPath body = createString("body");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -29,6 +34,9 @@ public class QTerms extends EntityPathBase<Terms> {
     public final BooleanPath optional = createBoolean("optional");
 
     public final StringPath title = createString("title");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QTerms(String variable) {
         super(Terms.class, forVariable(variable));

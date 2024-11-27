@@ -45,6 +45,13 @@ public class MissionQueryServiceImpl {
         filterMissions.forEach(mission -> System.out.println("Region: " + region + ", Mission: " + mission));
         return filterMissions;
     }
+//    @Transactional
+//    public List<Mission> findMissionsByMember(Long memberId) {
+//        // 이 메서드에서 트랜잭션을 유지하여 연관된 missionList 컬렉션을 로딩
+//        List<Mission> filterMissions = missionRepository.fi
+//
+//        return filterMissions;
+//    }
 
     @Transactional
     public String challengeMission(Long memberId, Long missionId) {

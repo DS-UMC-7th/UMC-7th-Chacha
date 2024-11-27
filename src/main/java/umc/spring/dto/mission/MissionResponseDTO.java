@@ -2,6 +2,7 @@ package umc.spring.dto.mission;
 
 import lombok.*;
 import umc.spring.domain.mapping.MissionStatus;
+import umc.spring.domain.mission.Mission;
 import umc.spring.domain.region.Region;
 
 import java.time.LocalDate;
@@ -37,7 +38,7 @@ public class MissionResponseDTO {
     }
 
     // Factory method to convert Mission to MissionResponseDTO
-    public static MissionResponseDTO fromMission(umc.spring.domain.mission.Mission mission) {
+    public static MissionResponseDTO fromMission(Mission mission) {
         return new MissionResponseDTO(
                 mission.getId(),
                 mission.getTitle(),

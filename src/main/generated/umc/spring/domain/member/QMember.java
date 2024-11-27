@@ -22,9 +22,14 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
     public final StringPath address = createString("address");
 
     public final StringPath birthDay = createString("birthDay");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final StringPath email = createString("email");
 
@@ -53,6 +58,9 @@ public class QMember extends EntityPathBase<Member> {
     public final ListPath<umc.spring.domain.report.Report, umc.spring.domain.report.QReport> reportList = this.<umc.spring.domain.report.Report, umc.spring.domain.report.QReport>createList("reportList", umc.spring.domain.report.Report.class, umc.spring.domain.report.QReport.class, PathInits.DIRECT2);
 
     public final ListPath<umc.spring.domain.review.Review, umc.spring.domain.review.QReview> reviewList = this.<umc.spring.domain.review.Review, umc.spring.domain.review.QReview>createList("reviewList", umc.spring.domain.review.Review.class, umc.spring.domain.review.QReview.class, PathInits.DIRECT2);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMember(String variable) {
         this(Member.class, forVariable(variable), INITS);

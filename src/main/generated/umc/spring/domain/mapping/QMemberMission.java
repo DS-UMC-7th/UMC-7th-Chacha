@@ -22,6 +22,11 @@ public class QMemberMission extends EntityPathBase<MemberMission> {
 
     public static final QMemberMission memberMission = new QMemberMission("memberMission");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final umc.spring.domain.member.QMember member;
@@ -29,6 +34,9 @@ public class QMemberMission extends EntityPathBase<MemberMission> {
     public final umc.spring.domain.mission.QMission mission;
 
     public final EnumPath<MissionStatus> status = createEnum("status", MissionStatus.class);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMemberMission(String variable) {
         this(MemberMission.class, forVariable(variable), INITS);

@@ -22,11 +22,19 @@ public class QMemberAgree extends EntityPathBase<MemberAgree> {
 
     public static final QMemberAgree memberAgree = new QMemberAgree("memberAgree");
 
+    public final umc.spring.domain.global.QBaseEntity _super = new umc.spring.domain.global.QBaseEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final umc.spring.domain.member.QMember member;
 
     public final umc.spring.domain.member.QTerms terms;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMemberAgree(String variable) {
         this(MemberAgree.class, forVariable(variable), INITS);

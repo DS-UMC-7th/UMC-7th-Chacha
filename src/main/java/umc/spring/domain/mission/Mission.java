@@ -10,6 +10,7 @@ import umc.spring.domain.mapping.MissionStatus;
 import umc.spring.domain.region.Region;
 import umc.spring.domain.store.Store;
 
+import java.lang.annotation.Annotation;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

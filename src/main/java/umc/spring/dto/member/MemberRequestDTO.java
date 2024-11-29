@@ -1,6 +1,7 @@
 package umc.spring.dto.member;
 
 import lombok.Getter;
+import umc.spring.validation.annotation.ExistCategories;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class MemberRequestDTO {
         Integer birthDay;
         String address;
         String specAddress;
+        @ExistCategories
         List<Long> preferCategory;
     }
 }

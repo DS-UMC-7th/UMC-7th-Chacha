@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface MissionMemberRepository extends JpaRepository<MemberMission, Long>, MissionMemberCustom{
 
+    boolean existsMemberMissionByMember_MemberIdAndMission_Id(Long memberId, Long missionId);
+
 }

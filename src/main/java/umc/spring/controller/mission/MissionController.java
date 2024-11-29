@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.domain.mapping.MissionStatus;
@@ -14,6 +15,7 @@ import umc.spring.domain.region.Region;
 import umc.spring.dto.mission.MissionResponseDTO;
 import umc.spring.service.RegionQueryService;
 import umc.spring.service.mission.MissionQueryServiceImpl;
+import umc.spring.validation.annotation.ExistMissions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,8 +50,9 @@ public class MissionController {
         return ResponseEntity.ok(missionResponseDTOs);
     }
     @PostMapping("/challenge")
+    @Validated
     public ResponseEntity<ApiResponse<String>> challengeMission(@RequestParam(name = "memberId") Long memberId,
-                                                        @RequestParam(name = "missionId") Long missionId) {
+                                                        @ExistMissions @RequestParam(name = "missionId") Long missionId) {
         String response = missionQueryService.challengeMission(memberId, missionId);
         return ResponseEntity.ok(ApiResponse.onSuccess(response));
     }

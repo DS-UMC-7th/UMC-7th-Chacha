@@ -1,13 +1,19 @@
 package umc.spring.service.mission;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.mapping.MissionStatus;
 import umc.spring.domain.member.Member;
 import umc.spring.domain.mission.Mission;
 import umc.spring.domain.region.Region;
+import umc.spring.domain.review.Review;
+import umc.spring.dto.mission.MissionResponseDTO;
+import umc.spring.dto.mission.MyReveiwDTO;
 import umc.spring.repository.member.MemberRepository;
 import umc.spring.repository.mission.MissionMemberRepository;
 import umc.spring.repository.mission.MissionMemberRepositoryImpl;
@@ -17,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class MissionQueryServiceImpl {
     private final MissionRepository missionRepository;
     private final MemberRepository memberRepository;
@@ -81,7 +87,15 @@ public class MissionQueryServiceImpl {
         return "Mission added to the member's challenges!";
     }
 
+    @Transactional
+    public Page<MissionResponseDTO> getAllMissionsByStore(Long storeId, int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);  // 페이지 번호와 크기를 기반으로 Pageable 객체 생성
 
+        Page<Mission> missionPage = missionRepository.findMissionByStore_StoreId(storeId, pageable); // 페이징된 리뷰 조회
+
+        return missionPage.map(MissionResponseDTO::fromMission);
+
+    }
 
 }
 

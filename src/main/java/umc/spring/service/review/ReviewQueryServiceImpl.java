@@ -7,8 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
-import umc.spring.apiPayload.exception.handler.FoodCategoryHandler;
-import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.image.ReviewImage;
 import umc.spring.domain.member.Member;
@@ -55,7 +53,8 @@ public class ReviewQueryServiceImpl {
             return  reviewImage;
         }).collect(Collectors.toList());
 
-        Review review = ReviewConverter.convertReveiw(requestDTO, storeRepository.findById(requestDTO.getStoreId()).orElseThrow(()->new StoreHandler(ErrorStatus.STORE_NOT_FOUND)), images);
+//        Review review = ReviewConverter.convertReveiw(requestDTO, storeRepository.findById(requestDTO.getStoreId()).orElseThrow(()->new StoreHandler(ErrorStatus.STORE_NOT_FOUND)), images);
+        Review review = ReviewConverter.convertReveiw(requestDTO, storeRepository.findById(requestDTO.getStoreId()).get(), images);
 
         images.forEach(image -> image.setReview(review));
         reviewRepository.save(review);

@@ -1,6 +1,7 @@
 package umc.spring.controller.store;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.domain.store.Store;
@@ -24,5 +25,6 @@ public class StoreRestController {
         Store store = storeCommandService.addStoreToRegion(request);
         return ApiResponse.onSuccess("가게가 등록되었습니다.");
     }
+
 }
 

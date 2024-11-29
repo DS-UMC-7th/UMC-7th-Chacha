@@ -1,21 +1,20 @@
 package umc.spring.controller.mission;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.domain.mapping.MissionStatus;
-import umc.spring.domain.mission.Mission;
 import umc.spring.domain.region.Region;
 import umc.spring.dto.mission.MissionResponseDTO;
 import umc.spring.service.RegionQueryService;
 import umc.spring.service.mission.MissionQueryServiceImpl;
 import umc.spring.validation.annotation.ExistMissions;
+import umc.spring.validation.annotation.ExistRange;
+import umc.spring.validation.annotation.ExistStores;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +24,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/missions")
 @RequiredArgsConstructor
 @Slf4j
+@Validated
 public class MissionController {
 
     private final MissionQueryServiceImpl missionQueryService;
@@ -55,6 +55,16 @@ public class MissionController {
                                                         @ExistMissions @RequestParam(name = "missionId") Long missionId) {
         String response = missionQueryService.challengeMission(memberId, missionId);
         return ResponseEntity.ok(ApiResponse.onSuccess(response));
+    }
+    // 특정 가게의 미션 목록
+    @GetMapping("/")
+    @ResponseBody
+    public ResponseEntity<ApiResponse<?>>  findMissionByStore(
+            @RequestParam(name = "storeId") @NotNull(message = "값은 필수입니다.") @ExistStores Long storeId,
+            @RequestParam(defaultValue = "0", name = "page")  @ExistRange int page,  // 기본 0
+            @RequestParam(defaultValue = "10", name = "size") int size  // 10개씩
+    ) {
+        return ResponseEntity.ok(ApiResponse.onSuccess(missionQueryService.getAllMissionsByStore(storeId, page -1, size)));
     }
 
 

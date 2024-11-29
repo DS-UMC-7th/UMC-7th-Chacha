@@ -2,10 +2,15 @@ package umc.spring.validation.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import umc.spring.validation.validator.CategoriesExistValidator;
 import umc.spring.validation.validator.StoresExistValidator;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import java.lang.annotation.Target;  // Target import 추가
+
 @Documented
 @Constraint(validatedBy = StoresExistValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER })

@@ -20,4 +20,6 @@ public class StoreImage {
     @ManyToOne
     @JoinColumn(name = "store_image")
     private Store store;
+
+    private String url;
 }

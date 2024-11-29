@@ -40,6 +40,10 @@ public class Review extends BaseEntity {
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ReviewImage> reviewImageList = new ArrayList<>();
 
+    public void setReview(ReviewImage image) {
+        reviewImageList.add(image);
+    }
+
 
 
 

@@ -26,8 +26,8 @@ public class StoresExistValidator implements ConstraintValidator<ExistStores, Lo
         boolean isValid = storeRepository.existsById(value);
         if (!isValid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.getMessage()).addConstraintViolation();
         }
-        return storeRepository.existsById(value);
+        return isValid;
     }
 }

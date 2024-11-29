@@ -50,6 +50,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
                 });
 
         return handleExceptionInternalArgs(e,HttpHeaders.EMPTY,ErrorStatus.valueOf("_BAD_REQUEST"),request,errors);
+//        return handleExceptionInternalArgs(e,HttpHeaders.EMPTY,HttpStatus.BAD_GATEWAY,errors);
     }
 
     @ExceptionHandler

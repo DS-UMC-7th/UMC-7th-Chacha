@@ -7,19 +7,21 @@ import umc.spring.domain.region.Region;
 
 import java.time.LocalDate;
 
-@Getter
+@Getter@Setter
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MissionResponseDTO {
 
-    private Long id;
-    private String title;
-    private Integer point;
-    private String bond;
-    private LocalDate deadline;
-    private String missionSpec;
-    private MissionStatus status;
-    private StoreDTO store;
-    private RegionDTO region;
+     Long id;
+     String title;
+     Integer point;
+     String bond;
+     LocalDate deadline;
+     String missionSpec;
+//     MissionStatus status;
+     StoreDTO store;
+     RegionDTO region;
 
     // DTO 내부 클래스: StoreDTO
     @Getter
@@ -46,7 +48,7 @@ public class MissionResponseDTO {
                 mission.getBond(),
                 mission.getDeadline(),
                 mission.getMissionSpec(),
-                mission.getStatus(),
+//                mission.getStatus(),
                 new StoreDTO(mission.getStore().getStoreId(), mission.getStore().getName()),
                 new RegionDTO(mission.getRegion().getRegion_id(), mission.getRegion().getCity())
         );

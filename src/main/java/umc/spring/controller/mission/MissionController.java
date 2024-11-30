@@ -66,6 +66,16 @@ public class MissionController {
     ) {
         return ResponseEntity.ok(ApiResponse.onSuccess(missionQueryService.getAllMissionsByStore(storeId, page -1, size)));
     }
+    @GetMapping("/myMission")
+    @ResponseBody
+    @Validated
+    public ResponseEntity<ApiResponse<?>>  findMissionsBymemberId(
+            @RequestParam(name = "memberId") @NotNull(message = "값은 필수입니다.") Long memberId,
+            @RequestParam(defaultValue = "0", name = "page")  @ExistRange int page,  // 기본 0
+            @RequestParam(defaultValue = "10", name = "size") int size  // 10개씩
+    ) {
+        return ResponseEntity.ok(ApiResponse.onSuccess(missionQueryService.getAllMissionsByMemberId(memberId, page -1, size)));
+    }
 
 
 }

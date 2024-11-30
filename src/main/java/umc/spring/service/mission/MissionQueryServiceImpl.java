@@ -96,6 +96,15 @@ public class MissionQueryServiceImpl {
         return missionPage.map(MissionResponseDTO::fromMission);
 
     }
+    @Transactional
+    public Page<MissionResponseDTO> getAllMissionsByMemberId(Long memberId, int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);  // 페이지 번호와 크기를 기반으로 Pageable 객체 생성
+
+        Page<Mission> missionPage = missionMemberRepository.findMemberMissionsByMember_MemberId(memberId, pageable); // 페이징된 리뷰 조회
+
+        return missionPage.map(MissionResponseDTO::fromMission);
+
+    }
 
 }
 
